@@ -1,0 +1,50 @@
+//关于我们
+@import "variables/color.less";
+@import "mixins/mixins.less";
+
+.about-history-wrap{
+  padding:20px 0;
+  background: #f4f4f4;
+  .swiper-container{
+    padding-bottom:40px;
+    background-image: url("../images/history/timeline_bg.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+  }
+}
+
+.about-info-wrap{
+  padding:20px 0;
+  .info-box{
+    font-size:14px;
+    //color:@gray-light;
+    color:#475669;
+    margin-bottom:20px;
+    p{
+    }
+  }
+}
+
+.about-qualify-wrap{
+  padding:20px 0;
+  background: #f4f4f4;
+}
+
+.about-honor-wrap{
+  padding:20px 0;
+}
+.about-honor-box{
+  padding-bottom:30px;
+  .img-box{
+    background: #fff;
+    &>img{
+      max-width:100%;
+      .center-block();
+    }
+  }
+  .honor-title{
+    text-align:center;
+    line-height:2;
+    .text-overflow();
+  }
+}

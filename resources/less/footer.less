@@ -1,0 +1,48 @@
+//公共页脚
+@import "variables/color.less";
+@import "mixins/mixins.less";
+
+.footer{
+  padding:20px;
+  background-color: #34383b;
+  color: #999;
+  font-size:14px;
+  .m-footer-info{
+    position: relative;
+    max-width: 1180px;
+    padding: 0 10px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 16px;
+    @media (max-width:767px){
+      display:none;
+    }
+    &.mobile{
+      display:none;
+      @media (max-width:767px){
+        display:block;
+      }
+    }
+  }
+  .m-footer-list{
+    margin-bottom:15px;
+    &>li{
+      display:inline-block;
+      line-height:30px;
+      min-width:4em;
+      @media (max-width:767px){
+        display:block;
+      }
+    }
+  }
+  a{
+    color:#999;
+    cursor:pointer;
+  }
+  p{
+    padding-top:10px;
+    &>span{
+      font-weight:700;
+    }
+  }
+}

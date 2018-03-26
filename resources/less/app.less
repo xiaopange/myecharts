@@ -1,0 +1,64 @@
+//首页
+@import "variables/color.less";
+@import "mixins/mixins.less";
+
+//轮播内容区
+.app-banner-content{
+  h2{
+    margin-top:7%;
+    font-size:36px;
+  }
+  .app-guide{
+    margin:10px 20px;
+    width:200px;
+    float:left;
+    &>img{
+      width:200px;
+    }
+    .img-tip{
+      font-size:14px;
+      line-height:1.5;
+      text-align:center;
+      margin-bottom:30px;
+    }
+    .btn-guide{
+      display:block;
+      border-color:@main-blue;
+      background: @main-blue;
+      color:#fff;
+    }
+  }
+}
+//产品介绍
+.app-intro-wrap{
+  background: #fff;
+  .app-intro{
+    padding:20px 0;
+    background: #fff;
+    .c-container{
+      position:relative;
+    }
+    &:nth-child(2n){
+      background: #f4f4f4;
+    }
+    .app-intro-title{
+      font-size:40px;
+      color:@main-green;
+      margin:160px 0 30px 0;
+      @media (max-width: 767px) {
+        font-size:24px;
+        margin:20px 0;
+      }
+    }
+    .app-intro-desc{
+      font-size:20px;
+      line-height:40px;
+      color:@gray-light;
+      margin-bottom:20px;
+      @media (max-width: 767px) {
+        font-size:16px;
+        margin-bottom:10px;
+      }
+    }
+  }
+}

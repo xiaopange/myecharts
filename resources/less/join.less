@@ -1,0 +1,65 @@
+//加入我们
+@import "variables/color.less";
+@import "mixins/mixins.less";
+
+.info-head{
+  margin-bottom:20px;
+  .info-more{
+    float:right;
+    line-height:42px;
+    &.red{
+      color:@main-red;
+    }
+  }
+  .info-title{
+    font-weight:bold;
+  }
+  .info-subtitle{
+    font-size:12px;
+    color:#99A9BF;
+  }
+}
+.join-wrap{
+  padding:50px 0;
+  .join-box{
+    font-size:14px;
+    color:@gray-light;
+    margin-bottom:20px;
+    p{
+    }
+  }
+  //招聘简讯列表
+  .join-list{
+    margin-bottom:20px;
+    font-size:14px;
+    &>li{
+      padding:6px 0;
+      border-bottom:1px solid @gray-lighter;
+    }
+    a{
+      display:block;
+      color:@gray-light;
+      .text-overflow();
+    }
+  }
+  //员工生活
+  .join-life-box{
+    display:block;
+    text-decoration: none;
+    margin-bottom:10px;
+    img{
+      width:100%;
+    }
+    .life-content{
+      padding:0 20px;
+    }
+    .life-title{
+      text-align:center;
+      color:@font-black;
+      .text-overflow();
+    }
+    .life-desc{
+      color:@gray-light;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+.sprite-link{
+background-image: url("../images/sprite.png");
+background-position: -78px -281px;
+width:73px;
+height:73px;
+}
+.sprite-logo{
+background-image: url("../images/sprite.png");
+background-position: 0px 0px;
+width:148px;
+height:66px;
+}
+.sprite-mark{
+background-image: url("../images/sprite.png");
+background-position: -289px -105px;
+width:30px;
+height:30px;
+}
+.sprite-more{
+background-image: url("../images/sprite.png");
+background-position: -248px -105px;
+width:36px;
+height:36px;
+}
+.sprite-more_red{
+background-image: url("../images/sprite.png");
+background-position: -404px -210px;
+width:24px;
+height:24px;
+}
+.sprite-top{
+background-image: url("../images/sprite.png");
+background-position: 0px -281px;
+width:73px;
+height:73px;
+}
+.sprite-up{
+background-image: url("../images/sprite.png");
+background-position: -343px -210px;
+width:56px;
+height:34px;
+}
+.sprite-water_m_c_1{
+background-image: url("../images/sprite.png");
+background-position: 0px -71px;
+width:90px;
+height:100px;
+}
+.sprite-water_m_c_2{
+background-image: url("../images/sprite.png");
+background-position: -343px -105px;
+width:90px;
+height:100px;
+}
+.sprite-water_m_c_3{
+background-image: url("../images/sprite.png");
+background-position: -190px -176px;
+width:90px;
+height:100px;
+}
+.sprite-water_m_c_4{
+background-image: url("../images/sprite.png");
+background-position: -95px -176px;
+width:90px;
+height:100px;
+}
+.sprite-water_m_w_1{
+background-image: url("../images/sprite.png");
+background-position: 0px -176px;
+width:90px;
+height:100px;
+}
+.sprite-water_m_w_2{
+background-image: url("../images/sprite.png");
+background-position: -248px 0px;
+width:90px;
+height:100px;
+}
+.sprite-water_m_w_3{
+background-image: url("../images/sprite.png");
+background-position: -153px 0px;
+width:90px;
+height:100px;
+}
+.sprite-water_m_w_4{
+background-image: url("../images/sprite.png");
+background-position: -343px 0px;
+width:90px;
+height:100px;
+}

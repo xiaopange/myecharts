@@ -1,0 +1,179 @@
+//历史
+@import "variables/color.less";
+@import "mixins/mixins.less";
+//时间轴
+.history-wrap{
+  padding-top:20px;
+  padding-bottom:100px;
+  .timeline {
+    position: relative;
+    left:50%;
+    margin-left:-100px;
+    width:200px;
+    list-style: none;
+  }
+  .timeline > li {
+    position: relative;
+    text-align:center;
+    margin-top:80px;
+    &:before{
+      content: '';
+      display: block;
+      position: absolute;
+      width: 10px;
+      height: 72px;
+      left: 100px;
+      bottom: 104px;
+      margin-left: -5px;
+      background: url('../images/history/timeline_point.png');
+    }
+    &:first-child{
+      margin-top:0;
+      &:before{
+        display:none;
+      }
+    }
+    &>.step-mark{
+      font-size:36px;
+      height:100px;
+      line-height:50px;
+      //background: #fff;
+      //单行
+      &.s-line{
+        line-height:100px;
+      }
+    }
+    &>.timeline-item{
+      position:absolute;
+      top:0;
+      width:500px;
+      height:80px;
+      padding:0 10px;
+      line-height:40px;
+      font-size:30px;
+      color:#fff;
+      font-weight:bold;
+      .text-overflow-multi(2);
+    }
+    &.left{
+      &>.timeline-item{
+        text-align:right;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        right:200px;
+      }
+    }
+    &.right{
+      &>.timeline-item{
+        text-align:left;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        left:200px;
+      }
+    }
+    &>.iconfont{
+      display:inline-block;
+      position: relative;
+      font-size: 60px;
+      font-weight:bold;
+      color: @main-blue;
+      top: 0;
+    }
+    &.teal{
+      &>.step-mark{
+        color:#0DD3C9;
+      }
+      &>.timeline-item{
+        background: #0DD3C9;
+      }
+    }
+    &.green{
+      &>.step-mark{
+        color:#0FB206;
+      }
+      &>.timeline-item{
+        background: #0FB206;
+      }
+    }
+    &.orange{
+      &>.step-mark{
+        color:#FF6E00;
+      }
+      &>.timeline-item{
+        background: #FF6E00;
+      }
+    }
+    &.blue{
+      &>.step-mark{
+        color:#008CFF;
+      }
+      &>.timeline-item{
+        background: #008CFF;
+      }
+    }
+    &.yellow{
+      &>.step-mark{
+        color:#FFD100;
+      }
+      &>.timeline-item{
+        background: #FFD100;
+      }
+    }
+    &.red{
+      &>.step-mark{
+        color:#FF2A00;
+      }
+      &>.timeline-item{
+        background: #FF2A00;
+      }
+    }
+    &.grass{
+      &>.step-mark{
+        color:#99AD00;
+      }
+      &>.timeline-item{
+        background: #99AD00;
+      }
+    }
+    &.purple{
+      &>.step-mark{
+        color:#6A67FE;
+      }
+      &>.timeline-item{
+        background: #6A67FE;
+      }
+    }
+    &.croci{
+      &>.step-mark{
+        color:#FDAC4C;
+      }
+      &>.timeline-item{
+        background: #FDAC4C;
+      }
+    }
+    &.magenta{
+      &>.step-mark{
+        color:#F33AFF;
+      }
+      &>.timeline-item{
+        background: #F33AFF;
+      }
+    }
+    &.pink{
+      &>.step-mark{
+        color:#F870A3;
+      }
+      &>.timeline-item{
+        background: #F870A3;
+      }
+    }
+    &.sky{
+      &>.step-mark{
+        color:#35B9F8;
+      }
+      &>.timeline-item{
+        background: #35B9F8;
+      }
+    }
+  }
+}
