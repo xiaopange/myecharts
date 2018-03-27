@@ -1,54 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ECharts</title>
+    <link rel="stylesheet" href="../../resources/css/style.css">
     <script src="../../resources/libs/echarts/dist/echarts.js"></script>
-    <style>
-        html,body{width:100%;height:100%;background: #ececec;position: relative;}
-        .m-b,.m-r{margin-bottom:10px;margin-right:10px;}
-        .main{width:600px;height:400px;padding:5px;border:1px solid red;margin-top:20px;margin-left:15px;;}
-    </style>
 </head>
+
 <body>
-    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-    <div class="main m-b m-r" id="main"></div>
-    <!-- 业务js -->
-    <script>
-        // 基于准备好的dom，初始化echarts实例
-        var main=document.getElementById("main");
-        var myChart=echarts.init(main);
-        // 指定图表的配置项和数据
-        var option={
-            title:{
-                text:"ECharts 入门示例"
-            },
-            tooltip:{ },
-            legend:{
-                data:['销量','利润']
-            },
-            xAxis:{
-                data:['衬衫','羊毛衫','短袖','外套']
-            },
-            yAxis:{ },
-            series:[
-                {
-                    name:'销量',
-                    type:'bar',
-                    data:[5,20,55,36]
+    <div class="part">
+        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+        <div class="main" id="main"></div>
+        <script>
+            // 基于准备好的dom，初始化echarts实例
+            var main = document.getElementById("main");
+            var myChart = echarts.init(main);
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: "ECharts 入门示例"
                 },
-                
-                {
-                    name: '利润',
-                    type: 'bar',
-                    data: [50, 200, 550, 360]
-                }
-            ]
-        };
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-    </script>
+                tooltip: {},
+                legend: {
+                    data: ['销量', '利润']
+                },
+                xAxis: {
+                    data: ['衬衫', '羊毛衫', '短袖', '外套']
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '销量',
+                        type: 'bar',
+                        data: [5, 20, 55, 36]
+                    },
+
+                    {
+                        name: '利润',
+                        type: 'bar',
+                        data: [50, 200, 550, 360]
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+    </div>
+    <div class="part">
+        <div class="title">
+            <b>二：绘制南丁格尔图
+                <small class="small-title">（南丁格尔图会通过半径表示数据的大小）</small>
+            </b>
+            <p class="dir">饼图主要是通过扇形的弧度表现不同类目的数据在总和中的占比，它的数据格式比柱状图更简单，只有一维的数值，不需要给类目。 因为不在直角坐标系上，所以也不需要xAxis，yAxis。ECharts 中的饼图也支持通过设置 roseType
+                显示成南丁格尔图。 roseType: 'angle'
+            </p>
+            <p class="dir">
+                <b>阴影的配置:</b> ECharts 中有一些通用的样式，诸如阴影、透明度、颜色、边框颜色、边框宽度等，这些样式一般都会在系列的 itemStyle 里设置。
+                <br> itemStyle的emphasis是鼠标 hover 时候的高亮样式，可能更多的时候是 hover 的时候通过阴影突出。
+            </p>
+            <p class="dir">
+                <b>深色背景和浅色标签</b> 把整个主题改成开始的示例中那样的深色主题，这就需要改背景色和文本颜色; 背景色是全局的，所以直接在 option 下设置 backgroundColor; 文本的样式可以设置全局的
+                textStyle; 也可以每个系列分别设置，每个系列的文本设置在 label.textStyle；跟itemStyle一样，label和labelLine的样式也有emphasis状态；
+                <small class="small-title">饼图的话还要将标签的视觉引导线的颜色设为浅色。</small>
+            </p>
+            <p class="dir">
+                <b>设置扇形的颜色：</b> ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现，扇形的颜色也是在 itemStyle 中设置；<br>
+                 因为只有明暗度的变化，所以有一种更快捷的方式是通过 visualMap 组件将数值的大小映射到明暗度（option.visualMap）
+            </p>
+            <div class="main" id="main2"> </div>
+            <script>
+                var main2 = document.getElementById("main2");
+                var myChart2 = echarts.init(main2);
+                var option2 = {
+                    visualMap: { //只有明暗度的变化，快捷的方式是通过 visualMap 组件将数值的大小映射到明暗度
+                        show: false,
+                        min: 80,
+                        max: 600,
+                        inRange: {
+                            colorLightness: [0, 1]
+                        }
+                    },
+                    series: [
+                        {
+                            name: "访问来源",
+                            type: "pie",
+                            radius: "55%",
+                            roseType: 'angle', //饼图也支持通过设置 roseType 显示成南丁格尔图
+                            data: [
+                                {
+                                    value: 235, name: '视频广告', 
+                                    itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
+                                        color: '#c23531'
+                                    }
+                                },
+                                {
+                                    value: 274, name: '联盟广告', 
+                                    itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
+                                        color: '#c23531'
+                                    }
+                                },
+                                {
+                                    value: 310, name: '邮件营销', 
+                                    itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
+                                        color: '#c23531'
+                                    }
+                                },
+                                {
+                                    value: 335, name: '直接访问', 
+                                    itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
+                                        color: '#c23531'
+                                    }
+                                },
+                                { 
+                                    value: 400, name: '搜索引擎' ,
+                                    itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
+                                        color: '#c23531'
+                                    }
+                                }
+                            ],
+                            itemStyle: { //ECharts 中有一些通用的样式，诸如阴影、透明度、颜色、边框颜色、边框宽度等，这些样式一般都会在系列的 itemStyle 里设置
+                                // 阴影的大小
+                                shadowBlur: 200,
+                                // 阴影水平方向上的偏移
+                                shadowOffsetX: 0,
+                                // 阴影垂直方向上的偏移
+                                shadowOffsetY: 0,
+                                // 阴影颜色
+                                shadowColor: 'rgba(0, 0, 0, 0.5)',
+                                color: '#c23531',  // 设置扇形的颜色
+                                /* emphasis: { //itemStyle的emphasis是鼠标 hover 时候的高亮样式。
+                                    shadowBlur: 200,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                } */
+                            },
+                            label: { //也可以每个系列分别设置，每个系列的文本设置在 label.textStyle。
+                                textStyle: {
+                                    color: '#fff',
+                                    fontSize: 16
+                                },
+                                emphasis: { //跟itemStyle一样，label和labelLine的样式也有emphasis状态。
+                                    shadowBlur: 200,
+                                    shadowColor: 'rgba(255, 255, 255, 0.5)'
+                                }
+                            },
+                            labelLine: { //饼图的话还要将标签的视觉引导线的颜色设为浅色。
+                                lineStyle: {
+                                    color: 'rgba(255, 255, 255, 0.3)'
+                                },
+                                emphasis: { //跟itemStyle一样，label和labelLine的样式也有emphasis状态。
+                                    shadowBlur: 200,
+                                    shadowColor: 'rgba(255, 255, 255, 0.8)'
+                                }
+                            },
+                        }
+                    ],
+                    backgroundColor: '#2c343c', //背景色是全局的，所以直接在 option 下设置 backgroundColor
+                    textStyle: {    //文本的样式可以设置全局的 textStyle。
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                };
+                myChart2.setOption(option2);
+            </script>
+        </div>
+    </div>
 </body>
+
 </html>
