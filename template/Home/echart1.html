@@ -11,43 +11,48 @@
 </head>
 
 <body>
+    <header>ECharts Pritice </header>
     <div class="part">
-        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-        <div class="main" id="main"></div>
-        <script>
-            // 基于准备好的dom，初始化echarts实例
-            var main = document.getElementById("main");
-            var myChart = echarts.init(main);
-            // 指定图表的配置项和数据
-            var option = {
-                title: {
-                    text: "ECharts 入门示例"
-                },
-                tooltip: {},
-                legend: {
-                    data: ['销量', '利润']
-                },
-                xAxis: {
-                    data: ['衬衫', '羊毛衫', '短袖', '外套']
-                },
-                yAxis: {},
-                series: [
-                    {
-                        name: '销量',
-                        type: 'bar',
-                        data: [5, 20, 55, 36]
+        <div class="title">
+            <b>一：ECharts 入门实例</b>
+            <p class="dir"></p>
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div class="main" id="main"></div>
+            <script>
+                // 基于准备好的dom，初始化echarts实例
+                var main = document.getElementById("main");
+                var myChart = echarts.init(main);
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "ECharts 入门示例"
                     },
+                    tooltip: {},
+                    legend: {
+                        data: ['销量', '利润']
+                    },
+                    xAxis: {
+                        data: ['衬衫', '羊毛衫', '短袖', '外套']
+                    },
+                    yAxis: {},
+                    series: [
+                        {
+                            name: '销量',
+                            type: 'bar',
+                            data: [5, 20, 55, 36]
+                        },
 
-                    {
-                        name: '利润',
-                        type: 'bar',
-                        data: [50, 200, 550, 360]
-                    }
-                ]
-            };
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
-        </script>
+                        {
+                            name: '利润',
+                            type: 'bar',
+                            data: [50, 200, 550, 360]
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+        </div>
     </div>
     <div class="part">
         <div class="title">
