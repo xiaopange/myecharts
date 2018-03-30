@@ -72,8 +72,8 @@
                 <small class="small-title">饼图的话还要将标签的视觉引导线的颜色设为浅色。</small>
             </p>
             <p class="dir">
-                <b>设置扇形的颜色：</b> ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现，扇形的颜色也是在 itemStyle 中设置；<br>
-                 因为只有明暗度的变化，所以有一种更快捷的方式是通过 visualMap 组件将数值的大小映射到明暗度（option.visualMap）
+                <b>设置扇形的颜色：</b> ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现，扇形的颜色也是在 itemStyle 中设置；
+                <br> 因为只有明暗度的变化，所以有一种更快捷的方式是通过 visualMap 组件将数值的大小映射到明暗度（option.visualMap）
             </p>
             <div class="main" id="main2"> </div>
             <script>
@@ -96,31 +96,31 @@
                             roseType: 'angle', //饼图也支持通过设置 roseType 显示成南丁格尔图
                             data: [
                                 {
-                                    value: 235, name: '视频广告', 
+                                    value: 235, name: '视频广告',
                                     itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
                                         color: '#c23531'
                                     }
                                 },
                                 {
-                                    value: 274, name: '联盟广告', 
+                                    value: 274, name: '联盟广告',
                                     itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
                                         color: '#c23531'
                                     }
                                 },
                                 {
-                                    value: 310, name: '邮件营销', 
+                                    value: 310, name: '邮件营销',
                                     itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
                                         color: '#c23531'
                                     }
                                 },
                                 {
-                                    value: 335, name: '直接访问', 
+                                    value: 335, name: '直接访问',
                                     itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
                                         color: '#c23531'
                                     }
                                 },
-                                { 
-                                    value: 400, name: '搜索引擎' ,
+                                {
+                                    value: 400, name: '搜索引擎',
                                     itemStyle: { //ECharts 中每个扇形颜色的可以通过分别设置 data 下的数据项实现。
                                         color: '#c23531'
                                     }
@@ -169,6 +169,39 @@
                 };
                 myChart2.setOption(option2);
             </script>
+        </div>
+    </div>
+    <div class="part">
+        <div class="title">
+            <b>三：颜色主题（Theme）</b>
+            <p class="dir">最简单的更改全局样式的方式，是直接采用颜色主题（theme）；
+                <br>
+                <small class="small-title">ECharts4 开始新内置了两套主题，分别为 'light' 和 'dark'。使用方法：
+                    <b> var chart = echarts.init(dom, 'light');</b> 或者
+                    <b> var chart = echarts.init(dom, 'dark');</b>
+                </small>
+            </p>
+        </div>
+        <div class="title">
+            <b>四：调色盘</b>
+            <p class="dir">调色盘，可以在 option 中设置。它给定了一组颜色，图形、系列会自动从其中选择颜色。 可以设置全局的调色盘，也可以设置系列自己专属的调色盘。
+                <img src="../../resources/images/1.png" alt="option 中设置调色盘">
+            </p>
+        </div>
+        <div class="title">
+            <b>五：直接的样式设置 itemStyle, lineStyle, areaStyle, label, ...</b>
+            <p class="dir">直接的样式设置是比较常用设置方式。纵观 ECharts 的 option 中，很多地方可以设置 itemStyle、lineStyle、areaStyle、label 等等。这些的地方可以直接设置图形元素的颜色、线宽、点的大小、标签的文字、标签的样式等等。
+            一般来说，ECharts 的各个系列和组件，都遵从这些命名习惯，虽然不同图表和组件中，itemStyle、label 等可能出现在不同的地方。
+            </p>
+        </div>
+        <div class="title">
+            <b>六：高亮的样式：emphasis</b>
+            <p class="dir">在鼠标悬浮到图形元素上时，一般会出现高亮的样式，默认情况下，高亮的样式是根据普通样式自动生成的。<small class="small-title">高亮的样式也可以自己定义，主要是通过 emphasis 属性来定制。</small><br>
+                 <b> emphsis 中的结构: </b> <br>
+                 <img src="../../resources/images/2.png" alt="">
+                 <small class="small-title">注意：在 ECharts4 以前，高亮和普通样式的写法，是这样的：（现在不推荐使用）</small>
+                <img src="../../resources/images/3.png" alt="">
+            </p>
         </div>
     </div>
 </body>
