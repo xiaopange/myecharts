@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ECharts</title>
     <link rel="stylesheet" href="../../resources/css/style.css">
+    <script src="../../resources/libs/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../../resources/libs/echarts/dist/echarts.js"></script>
 </head>
 
@@ -191,17 +192,168 @@
         <div class="title">
             <b>五：直接的样式设置 itemStyle, lineStyle, areaStyle, label, ...</b>
             <p class="dir">直接的样式设置是比较常用设置方式。纵观 ECharts 的 option 中，很多地方可以设置 itemStyle、lineStyle、areaStyle、label 等等。这些的地方可以直接设置图形元素的颜色、线宽、点的大小、标签的文字、标签的样式等等。
-            一般来说，ECharts 的各个系列和组件，都遵从这些命名习惯，虽然不同图表和组件中，itemStyle、label 等可能出现在不同的地方。
+                一般来说，ECharts 的各个系列和组件，都遵从这些命名习惯，虽然不同图表和组件中，itemStyle、label 等可能出现在不同的地方。
             </p>
         </div>
         <div class="title">
             <b>六：高亮的样式：emphasis</b>
-            <p class="dir">在鼠标悬浮到图形元素上时，一般会出现高亮的样式，默认情况下，高亮的样式是根据普通样式自动生成的。<small class="small-title">高亮的样式也可以自己定义，主要是通过 emphasis 属性来定制。</small><br>
-                 <b> emphsis 中的结构: </b> <br>
-                 <img src="../../resources/images/2.png" alt="">
-                 <small class="small-title">注意：在 ECharts4 以前，高亮和普通样式的写法，是这样的：（现在不推荐使用）</small>
+            <p class="dir">在鼠标悬浮到图形元素上时，一般会出现高亮的样式，默认情况下，高亮的样式是根据普通样式自动生成的。
+                <small class="small-title">高亮的样式也可以自己定义，主要是通过 emphasis 属性来定制。</small>
+                <br>
+                <b> emphsis 中的结构: </b>
+                <br>
+                <img src="../../resources/images/2.png" alt="">
+                <small class="small-title">注意：在 ECharts4 以前，高亮和普通样式的写法，是这样的：（现在不推荐使用）</small>
                 <img src="../../resources/images/3.png" alt="">
             </p>
+        </div>
+    </div>
+    <div class="part">
+        <div class="title">
+            <b>七：异步数据加载和更新</b>
+            <p class="dir">ECharts 中实现异步数据的更新：
+                <br> (1)在图表初始化后不管任何时候只要通过 jQuery 等工具异步获取数据后通过 setOption 填入数据和配置项就行。
+                <br> (2)先设置完其它的样式，显示一个空的直角坐标轴，然后获取数据后填入数据。
+            </p>
+            <div class="main" id="main3"></div>
+            <div class="main" id="main3_2"></div>
+            <script>
+                var main3 = document.getElementById("main3")
+                var myChart3 = echarts.init(main3);
+                $.get("../../request/1.json").done(function (data) {
+                    myChart3.setOption({
+                        title: {
+                            text: "异步加载数据实例(1)"
+                        },
+                        tooltip: {
+                            trigger: 'axis',
+                            borderColor: '#636F7F',
+                            borderWidth: 1,
+                            backgroundColor: 'rgba(99,111,127,1)',
+                            textStyle: {
+                                color: '#ffffff',
+                                // fontWeight : 'bold',
+                                fontSize: 14,
+                            },
+                            transitionDuration: 0.6,
+                            formatter: '{b0}<br />{c0}(万元)',
+                            axisPointer: {
+                                type: 'line',
+                                lineStyle: {
+                                    color: '#05F41E',
+                                    width: 1,
+                                    type: 'solid',
+                                },
+                            },
+                        },
+                        calculable: true,
+                        legend: {
+                            data: ['销量']
+                        },
+                        xAxis: {
+                            data: ["衬衫", "裤子", "短袖", "靴子", "外套"],
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#333',
+                                    align: 'center',
+                                    baseline: 'top'
+                                },
+                                rotate: 20,
+                                margin: 15,
+                            },
+                            splitLine: {
+                                show: false
+                            },
+                            axisLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: '#EFF0F0',
+                                    type: 'dashed',
+                                }
+                            }
+                        },
+                        yAxis: {
+                            splitLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: '#EFF0F0',
+                                    type: 'dashed',
+                                }
+                            },
+                            axisLine: {
+                                show: false
+                            }
+                        },
+                        series: [
+                            {
+                                name: "销量",
+                                type: "bar",
+                                data: [5, 20, 30, 100, 250],
+                                barWidth: 15,
+                                itemStyle: {
+                                    normal: {
+                                        barBorderRadius: 20,
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: '#37BBF8'
+                                        }, {
+                                            offset: 1,
+                                            color: '#2294E4'
+                                        }]),
+                                        // shadowColor: 'rgba(35,149,229,0.8)',
+                                        // shadowBlur: 20,
+                                        areaStyle: { type: 'default' }
+                                    }
+                                }
+                            }
+                        ]
+                    })
+                })
+            </script>
+
+            <script>
+                var main3_2 = document.getElementById("main3_2");
+                var myChart3_2 = echarts.init(main3_2);
+                myChart3_2.setOption({
+                    title: {
+                        text: '异步加载数据实例(2)'
+                    },
+                    tooltip: {
+                    },
+                    legend: {
+                        data: ['销量']
+                    },
+                    xAxis: {
+                        data: []
+                    },
+                    yAxis: {
+                    },
+                    series: [
+                        {
+                            name: '销量',
+                            type: 'bar',
+                            data: [4, 50, 300, 6, 60]
+                        }
+                    ]
+                });
+                $(document).ready(function () {
+                    // 异步加载数据
+                    $.get('../../request/1.json').done(function (data) {
+                        console.log(data);
+                        // 填入数据
+                        myChart3_2.setOption({
+                            xAxis:{
+                                data:data.item
+                            },
+                            series:[{
+                                // 根据名字对应到相应的系列
+                                name:'销量',
+                                data:data.number
+                            }]
+                        })
+                    })
+                });
+            </script>
         </div>
     </div>
 </body>
