@@ -215,12 +215,14 @@
                 <br> (1)在图表初始化后不管任何时候只要通过 jQuery 等工具异步获取数据后通过 setOption 填入数据和配置项就行。
                 <br> (2)先设置完其它的样式，显示一个空的直角坐标轴，然后获取数据后填入数据。
             </p>
-            <div class="main" id="main3"></div>
-            <div class="main" id="main3_2"></div>
+            <div class="main fl" id="main3"></div>
             <script>
                 var main3 = document.getElementById("main3")
                 var myChart3 = echarts.init(main3);
-                $.get("../../request/1.json").done(function (data) {
+                var date = new Date();
+                var timer = date.getTime().toString();
+                $.get('../../request/1.json?t='+timer).done(function (data) {
+                    console.log(data);
                     myChart3.setOption({
                         title: {
                             text: "异步加载数据实例(1)"
@@ -311,48 +313,50 @@
                 })
             </script>
 
+            <button class="btn fl" id="btn1">点击呈现异步加载数据实例（2）</button>
+
+            <div class="main fl" id="main3_2"></div>
             <script>
                 var main3_2 = document.getElementById("main3_2");
                 var myChart3_2 = echarts.init(main3_2);
                 myChart3_2.setOption({
                     title: {
-                        text: '异步加载数据实例(2)'
+                        text: '异步数据加载示例(2)'
                     },
-                    tooltip: {
-                    },
+                    tooltip: {},
                     legend: {
                         data: ['销量']
                     },
                     xAxis: {
                         data: []
                     },
-                    yAxis: {
-                    },
-                    series: [
-                        {
-                            name: '销量',
-                            type: 'bar',
-                            data: [4, 50, 300, 6, 60]
-                        }
-                    ]
+                    yAxis: {},
+                    series: [{
+                        name: '销量',
+                        type: 'bar',
+                        data: []
+                    }]
                 });
-                $(document).ready(function () {
-                    // 异步加载数据
-                    $.get('../../request/1.json').done(function (data) {
-                        console.log(data);
-                        // 填入数据
-                        myChart3_2.setOption({
-                            xAxis:{
-                                data:data.item
-                            },
-                            series:[{
-                                // 根据名字对应到相应的系列
-                                name:'销量',
-                                data:data.number
-                            }]
+                $(function(){
+                    $("#btn1").on("click",function () {  
+                        var date = new Date();
+                        var timer = date.getTime().toString();
+                        // 异步加载数据
+                        $.get('../../request/1.json?t=' + timer).done(function (res) {
+                            // 填入数据
+                             myChart3_2.setOption({
+                                xAxis: {
+                                    data: res.data.item
+                                },
+                                series: [{
+                                    // 根据名字对应到相应的系列
+                                    name: '销量',
+                                    data: res.data.number
+                                }]
+                            })
                         })
-                    })
-                });
+                    });
+                })
             </script>
         </div>
     </div>

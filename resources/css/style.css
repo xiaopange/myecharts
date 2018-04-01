@@ -21,6 +21,7 @@ header{
     background:#fff;
     padding:15px;
     margin-bottom:15px;
+    overflow: hidden;
 }
 .main{
     width:600px;
@@ -28,6 +29,7 @@ header{
     margin-bottom:10px;
     padding:5px;
     border:1px solid #666;
+    overflow: hidden;
 }
 .title{
     font-size: 18px;
@@ -39,4 +41,20 @@ header{
 .dir{
     font-size:14px;
     margin-bottom: 5px;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+.btn{
+    padding:6px 12px;
+    background: rgb(14, 147, 255);
+    border:none;
+    margin:0px 1%;
+    color:#fff;
+    font-size:16px;
+    cursor: pointer;
+    border-radius: 4px;
 }

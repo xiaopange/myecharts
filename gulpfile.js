@@ -2,6 +2,7 @@
 var gulp = require('gulp'); //本地安装gulp所用到的地方
 var less = require('gulp-less'); //less编译
 var webserver = require('gulp-webserver'); //静态服务(其他选择gulp-connect或livereload)
+// var connect = require('gulp-connect');
 var concat = require('gulp-concat');  //文件合并
 var rename = require('gulp-rename'); //文件重命名
 var replace = require('gulp-replace');//文件正则替换
@@ -36,6 +37,15 @@ var fs = require('fs');
 var path = require('path');
 //web服务
 gulp.task('server',function(){
+/* 	connect.server({
+		port: 8002,
+		root: '', //项目的根目录
+		livereload: true,  //实现自动刷新
+		directoryListing: true,  //目录列表显示
+		open: true,               //打开浏览器
+		fallback: 'index.html'    //默认打开文件
+	}); */
+
 	gulp.src(basedir).pipe(webserver({
 		port:9988,
 		path:'',
