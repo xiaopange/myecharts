@@ -221,7 +221,7 @@
                 var myChart3 = echarts.init(main3);
                 var date = new Date();
                 var timer = date.getTime().toString();
-                $.get('../../request/1.json?t='+timer).done(function (data) {
+                $.get('../../request/1.json?t=' + timer).done(function (data) {
                     console.log(data);
                     myChart3.setOption({
                         title: {
@@ -328,25 +328,34 @@
                         data: ['销量']
                     },
                     xAxis: {
+                        show: false,
                         data: []
                     },
-                    yAxis: {},
+                    yAxis: {
+                        show: false,
+                    },
                     series: [{
                         name: '销量',
                         type: 'bar',
                         data: []
                     }]
                 });
-                $(function(){
-                    $("#btn1").on("click",function () {  
+                $(function () {
+                    myChart3_2.showLoading(); //loading 动画
+                    $("#btn1").on("click", function () {
                         var date = new Date();
                         var timer = date.getTime().toString();
                         // 异步加载数据
                         $.get('../../request/1.json?t=' + timer).done(function (res) {
+                            myChart3_2.hideLoading(); //loading 动画
                             // 填入数据
-                             myChart3_2.setOption({
+                            myChart3_2.setOption({
                                 xAxis: {
+                                    show: true,
                                     data: res.data.item
+                                },
+                                yAxis: {
+                                    show: true,
                                 },
                                 series: [{
                                     // 根据名字对应到相应的系列
@@ -355,6 +364,89 @@
                                 }]
                             })
                         })
+                    });
+                })
+            </script>
+        </div>
+
+        <div class="title">
+            <b>八：loading动画</b>
+            <p class="dir">
+                ECharts 默认有提供了一个简单的加载动画。只需要调用 showLoading 方法显示。数据加载完成后再调用 hideLoading 方法隐藏加载动画。
+                <br>
+                <img src="../../resources/images/4.png" alt="loading动画">
+            </p>
+        </div>
+
+        <div class="title">
+            <b>九：数据的动态更新</b>
+            <p class="dir">
+                ECharts 由数据驱动，数据的改变驱动图表展现的改变,所有数据的更新都通过 setOption实现，你只需要定时获取数据，setOption 填入数据，而不用考虑数据到底产生了那些变化，ECharts 会找到两组数据之间的差异然后通过合适的动画去表现数据的变化。
+                <br>
+                <small class="small-title">ECharts 3 中移除了 ECharts2 中的 addData 方法。如果只需要加入单个数据，可以先 data.push(value) 后 setOption</small>
+            </p>
+            <span class="btn fl" id="btn2">点击呈现</span>
+            <div class="main fl" id="main4"></div>
+            <script>
+                $(function () {
+                    $("#btn2").on("click", function () {
+                        var main4=document.getElementById("main4");
+                        var myChart4=echarts.init(main4);
+                        var base = +new Date(2014, 9, 3);
+                        var oneDay = 24 * 3600 * 1000;
+                        var date = [];
+                        var data = [Math.random() * 150];
+                        var now = new Date(base);
+                        function addData(shift) {
+                            now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+                            date.push(now);
+                            data.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
+                            if (shift) {
+                                date.shift();
+                                data.shift();
+                            };
+                            now = new Date(+new Date(now) + oneDay);
+                        };
+                        for (var i = 1; i < 100; i++) {
+                            addData();
+                        };
+                        var option = {
+                            xAxis: {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: date
+                            },
+                            yAxis: {
+                                boundaryGap: [0, '50%'],
+                                type: 'value',
+                            },
+                            series: [
+                                {
+                                    name: '成交',
+                                    type: 'line',
+                                    smooth: true,
+                                    symbol: 'none',
+                                    stack: 'a',
+                                    areaStyle: {
+                                        normal: {}
+                                    },
+                                    data: data
+                                }
+                            ]
+                        };
+                        myChart4.setOption(option);
+                        setInterval(function () {
+                            addData(true);
+                            myChart4.setOption({
+                                xAxis: {
+                                    data: date
+                                },
+                                series: [{
+                                    name: '成交',
+                                    data: data
+                                }]
+                            });
+                        }, 500);
                     });
                 })
             </script>

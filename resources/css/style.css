@@ -21,7 +21,6 @@ header{
     background:#fff;
     padding:15px;
     margin-bottom:15px;
-    overflow: hidden;
 }
 .main{
     width:600px;
@@ -34,6 +33,7 @@ header{
 .title{
     font-size: 18px;
     margin-bottom:15px;
+    overflow: hidden;
 }
 .small-title{
     color:rgb(206, 36, 13);
