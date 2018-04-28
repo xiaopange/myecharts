@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饼图+环形图</title>
+    <link rel="stylesheet" href="../../resources/css/style.css">
+    <script src="../../resources/libs/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../../resources/libs/echarts/dist/echarts.js"></script>
+</head>
+
+<body>
+    <header>ECharts实例练习</header>
+    <div class="part">
+        <div class="title">
+            <b>（1）</b>
+            <p class="dir"></p>
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div class="main" id="main"></div>
+            <script>
+                // 基于准备好的dom，初始化echarts实例
+                var main = document.getElementById("main");
+                var myChart = echarts.init(main);
+                // 指定图表的配置项和数据
+                option = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'center',
+                        y: 'center',
+                        data: ['直接访问', '']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            dataView: { show: true, readOnly: false },
+                            magicType: {
+                                show: true,
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        width: '20%',
+                                        height: '30%',
+                                        itemStyle: {
+                                            normal: {
+                                                label: {
+                                                    formatter: function(params) {
+                                                        return 'other\n' + params.value + '%\n'
+                                                    },
+                                                    textStyle: { baseline: 'middle' }
+                                                }
+                                            },
+                                        }
+                                    }
+                                }
+                            },
+                            restore: { show: true },
+                            saveAsImage: { show: true }
+                        }
+                    },
+                    series: [{
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data: [
+                            { value: 335, name: '直接访问' },
+                            { value: 310, name: '' },
+                            // {value:234, name:'联盟广告'},
+                            // {value:135, name:'视频广告'},
+                            // {value:1548, name:'搜索引擎'}
+                        ]
+                    }]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

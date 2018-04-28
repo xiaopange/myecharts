@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>折线图</title>
+    <link rel="stylesheet" href="../../resources/css/style.css">
+    <script src="../../resources/libs/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../../resources/libs/echarts/dist/echarts.js"></script>
+</head>
+
+<body>
+    <header>ECharts实例练习</header>
+    <div class="part">
+        <div class="title">
+            <b>（1）</b>
+            <p class="dir"></p>
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div class="main" id="main" style='width:100%;'>
+                <div class="main1" id="main1" style="width:70%;height:100%;float:left;background:red;"></div>
+                <div class="main2" id="main2" style="width:30%;height:100%;float:right;background:yellow;"></div>
+            </div>
+            <script>
+                // 基于准备好的dom，初始化echarts实例
+                var main = document.getElementById("main1");
+                var myChart = echarts.init(main);
+                // 指定图表的配置项和数据
+                //品牌分析/热度
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            backgroundColor: 'rgba(255,255,255,0.8)',
+                            extraCssText: 'box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);',
+                            textStyle: {
+                                color: '#666',
+                            },
+                        },
+                        //     toolbox: {
+                        //         feature: {
+                        //             magicType: {show: true, type: ['bar']},
+                        //             restore: {show: true},
+                        //             saveAsImage: {show: true}
+                        //         }
+                        //     },
+                        grid: {
+                            // top: '100',
+                            // left: '3%',
+                            // right: '4%',
+                            //bottom: '50',
+                            containLabel: true
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            data: ['100', '300', '500', '700', '900', '1200', '1200以上'],
+                            boundaryGap: false, //坐标轴两边留白
+                            alignWithLabel: true,
+                            splitLine: {
+                                show: false,
+                                lineStyle: {
+                                    color: ['#D4DFF5']
+                                }
+                            },
+                            axisTick: {
+                                show: true,
+                                inside: true
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#666'
+                                }
+                            },
+                        },],
+                        yAxis: {
+                            type: 'value',
+                            boundaryGap: true,
+                            offset: '50',
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#666',
+                                    fontStyle: 'normal',
+                                }
+                            },
+                            axisLine: {
+                                show: false
+                            },
+                            axisTick: {
+                                color: '#dadfea',
+                                inside: true
+                            },
+                            axisLabel: {
+                                inside: true,
+                                z: 10
+                            },
+                            splitLine: {
+                                show: true,
+                                lineStyle: {
+                                    type: 'dashed'
+                                },
+                                zlevel: 9999999
+                            }
+                        },
+                        series: [{
+                            type: 'line',
+                            smooth: true,
+                            symbol: 'circle',
+                            symbolSize: 16,
+                            data: ['1200', '1400', '1008', '1411', '1026', '1288', '1300'],
+                            areaStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(
+                                        0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: '#87d855'
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: '#63c7f8'
+                                        }
+                                        ]
+                                    )
+                                }
+                            },
+                            itemStyle: {
+                                opacity: 0
+                            },
+                            lineStyle: {
+                                normal: {
+                                    color: 'transparent'
+                                }
+                            },
+                            emphasis: {
+                                itemStyle: {
+                                    color: '#87d857',
+                                    borderColor: '#fff',
+                                    borderWidth: 11,
+                                    borderType: 'solid',
+                                    opacity: 1
+                                },
+                            }
+                        }]
+                    };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            
+                $(window).on("resize", function () {
+                    myChart.resize();
+                })
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -21,12 +21,12 @@ var basedir='';
 
 // 文件include
 gulp.task('fileinclude', function() {
-  gulp.src([basedir+'template/Home/*.html'])
+  gulp.src([basedir+'template/*/*.html'])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: basedir+'template/Shared/'
     }))
-    .pipe(gulp.dest(basedir+'views/Home'));
+    .pipe(gulp.dest(basedir+'views/*/*.html'));
 });
 //定义默认任务
 gulp.task('default',['fileinclude','server','watch'],function(){
